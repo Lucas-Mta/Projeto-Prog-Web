@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Barra lateral de navegação */
+.sidebar {
+    width: 100px;
+    background-color: #fef7ff;
+    border-right: 1px solid #000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.go-back {
+    text-align: center;
+}
+
+.go-back-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Conteúdo */
+.dashboard {
+    flex: 1;
+}
+
+.dashboard-header {
+    background-color: #fef7ff;
+    padding: 50px 20px 50px 40px;
+    border-bottom: 1px solid #9287af;
+    width: 100%;
+    text-align: center;
+}
+
+.dashboard-header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+}
+
+.dashboard-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #f2f2f2; 
+    padding: 40px;
+    margin: 50px;
+    border-radius: 10px;
+    height: 62%;
+}
+
+
+/* Informações do Usuário*/
+
+.user-general {
+    text-align: center;
+    flex-basis: 30%;
+    margin-right: 20px; /* Define a largura da área da foto e nome */
+}
+
+.user-photo img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.user-name {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Área das informações à direita */
+.user-info {
+    flex-basis: 65%; 
+}
+
+.user-biography, .user-birthday {
+    margin-bottom: 35px;
+}
+
+.user-biography h3, .user-birthday h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.user-biography p, .user-birthday p {
+    font-size: 16px;
+    color: #333;
+}
