@@ -1,0 +1,74 @@
+.transaction-sec {
+    background-color: #efefef;
+    margin: 5%;
+}
+
+.transaction-header {
+    background-color:#d4d4d4;
+    padding: 1.2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-header select {
+    background-color: #d4d4d4;
+    padding: 0.5%;
+    margin: 0 1.3%;
+    font-size: 1.1em;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-and-filter {
+    display: flex;
+    align-items: center;
+    padding: 1.2%;
+    margin: 0 1.5%;
+    margin-right: 4%; 
+}
+
+.search-and-filter input {
+    background-color: #d4d4d4;
+    padding: 2%;
+    padding-left: 6%;
+    border-radius: 5px;
+    border: 3px solid #000000;
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.search-filter-button {
+    background-color:#d4d4d4;
+    border: 0px;
+    font-size: 1.1em;
+    margin-left: 3%;
+    margin-right: 3%;
+    cursor: pointer;
+}
+
+/*fazer*/
+.transaction-sec hr{
+    height: 10px;
+}
+
+.transaction-table{
+    padding: 5% 7%;
+}
+
+.transaction-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #000000; 
+}
+
+
+.transaction-table th,
+.transaction-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 3px solid #000000;
+}
+
