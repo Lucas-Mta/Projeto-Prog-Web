@@ -18,7 +18,7 @@ body {
 .sidebar {
     width: 250px;
     background-color: #fef7ff;
-    border-right: 1px solid #000;
+    border-right: 1px solid #c4c2c29c;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -34,9 +34,12 @@ body {
 .profile-icon {
     width: 150px;
     height: 150px;
-    background-color: #555;
     border-radius: 50%;
     margin: 0 auto;
+}
+
+.profile-icon i {
+    font-size: 150px;
 }
 
 .profile-name {
@@ -52,10 +55,15 @@ body {
 .menu-item {
     display: flex;
     align-items: center;
+    gap: 10px;
     padding: 10px;
     font-size: 16px;
     color: #000;
     cursor: pointer;
+}
+
+.menu-item i {
+    transform: scale(1.2);
 }
 
 /* Hover para itens do menu que não selecionados*/
@@ -90,7 +98,7 @@ body {
 .dashboard-header {
     background-color: #fef7ff;
     padding: 50px 20px 50px 40px;
-    border-bottom: 2px solid #9287af;
+    border-bottom: 1px solid #c4c2c29c;
 }
 
 .dashboard-header h1 {
