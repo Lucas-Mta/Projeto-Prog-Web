@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transações</title>
     <link rel="stylesheet" href="styleInicial.css">
-    <link rel="stylesheet" href="styleTransacoes.css">
+    <link rel="stylesheet" href="styleReceitas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> 
 </head>
 
@@ -27,7 +27,7 @@
             <!--Seção do menu principal-->
             <nav>
                 <ul class="menu-nav">
-                    <li class="menu-item ativo">
+                    <li class="menu-item">
                         <i class="fa-solid fa-house-chimney"></i> 
                         Página Inicial
                     </li>
@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-coins"></i> 
                         Transações
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item ativo">
                         <i class="fa-solid fa-plus"></i> 
                         Receitas
                     </li>
@@ -66,33 +66,37 @@
         <!--Conteúdo-->
         <main class="dashboard">
             <header class="dashboard-header">
-                <h1>TRANSAÇÕES</h1>
-                <p>Bem vindo(a), Fulano!</p>
+                <h1>RECEITAS</h1>
             </header>
         
             <section class="transaction-sec">
                 <div class="transaction-header">
-                    <select name="month" id="month">
-                        <option value="january">JANEIRO</option>
-                        <option value="february">FEVEREIRO</option>
-                        <option value="march">MARÇO</option>
-                        <option value="april">ABRIL</option>
-                        <option value="may">MAIO</option>
-                        <option value="june">JUNHO</option>
-                        <option value="july">JULHO</option>
-                        <option value="august">AGOSTO</option>
-                        <option value="september">SETEMBRO</option>
-                        <option value="october">OUTUBRO</option>
-                        <option value="november">NOVEMBRO</option>
-                        <option value="december">DEZEMBRO</option>
-                    </select>
-
-                    <hr>
-        
+                    <div class="month-select-and-new"> 
+                        <select name="month" id="month">
+                            <option value="january">JANEIRO</option>
+                            <option value="february">FEVEREIRO</option>
+                            <option value="march">MARÇO</option>
+                            <option value="april">ABRIL</option>
+                            <option value="may">MAIO</option>
+                            <option value="june">JUNHO</option>
+                            <option value="july">JULHO</option>
+                            <option value="august">AGOSTO</option>
+                            <option value="september">SETEMBRO</option>
+                            <option value="october">OUTUBRO</option>
+                            <option value="november">NOVEMBRO</option>
+                            <option value="december">DEZEMBRO</option>
+                        </select>
+    
+                        <button class="new-payment"> 
+                            Nova Receita
+                        </button>
+                    </div>
+                    
                     <div class="search-and-filter">
                         <button type="button" class="search-filter-button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
+
                         <input type="search" placeholder="Buscar...">
                         <i class="fa solid fa-filter"></i>
                         <button type="button" class="search-filter-button">Filtrar</button>
@@ -103,35 +107,35 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>TIPO</th>
-                                <th>VALOR</th>
+                                <th>MOVIMENTAÇÕES</th>
+                                <th>VALOR RECEITA</th>
                                 <th>DATA</th>
-                                <th>DESCRIÇÃO</th>
+                                <th>DETALHES</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Gasto</td>
-                                <td>R$200,00</td>
-                                <td>01/09</td>
-                                <td>ingresso pro rolezinho da tcheca</td>
+                                <td>Salário</td>
+                                <td>R$2000,00</td>
+                                <td>24/09</td>
+                                <td>N/A</td>
                             </tr>
                             <tr>
-                                <td>Gasto</td>
+                                <td>Freela</td>
                                 <td>R$25,00</td>
-                                <td>06/09</td>
-                                <td>Compra de marmita</td>
+                                <td>25/09</td>
+                                <td>Freela Cascata do Vinho</td>
                             </tr>
                             <tr>
-                                <td>Gasto</td>
+                                <td>Jogo do Bicho</td>
                                 <td>R$100,00</td>
-                                <td>10/09</td>
-                                <td>Pagamento para o conserto</td>
+                                <td>25/09</td>
+                                <td>5° lugar do jogo do bicho</td>
                             </tr>
                             <tr>
-                                <td>Receita</td>
+                                <td>Apostas esportivas</td>
                                 <td>R$500,00</td>
-                                <td>15/09</td>
+                                <td>26/09</td>
                                 <td>Jogo do tigrinho</td>
                             </tr>
                         </tbody>
