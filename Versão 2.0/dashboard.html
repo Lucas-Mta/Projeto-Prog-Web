@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro</title>
+    <link rel="stylesheet" href="styleDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <!-- Perfil do usuário -->
+            <div class="user-profile">
+                <div class="user-icon">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <p class="user-name">Nome</p>
+            </div>
+
+            <!-- Botão de adicionar nova transação -->
+            <button class="new-transaction-btn">
+                <i class="fa-solid fa-plus"></i> NOVO
+            </button>
+
+            <!-- Menu principal -->
+            <nav class="menu">
+                <ul>
+                    <li class="menu-item active">
+                        <i class="fa-solid fa-house"></i> Dashboard
+                    </li>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-money-bill-transfer"></i> Transações
+                    </li>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-arrow-up"></i> Receitas
+                    </li>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-arrow-down"></i> Gastos
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Menu secundário (Configurações e Ajuda) -->
+            <nav class="secondary-menu">
+                <ul>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-gear"></i> Configuração
+                    </li>
+                    <li class="menu-item">
+                        <i class="fa-solid fa-circle-question"></i> Ajuda
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Dashboard principal -->
+        <main class="dashboard">
+            <header>
+                <h1>DASHBOARD</h1>
+                <p>Bem vindo(a), Fulano!</p>
+            </header>
+
+            <section class="cards">
+                <!-- Cartões de resumo -->
+                 <div class="resume-cards">
+                    <div class="summary-card saldo">
+                        <p>Saldo Atual:</p>
+                        <h2>R$ 25,00</h2>
+                    </div>
+                    <div class="summary-card gastos">
+                        <p>Gastos:</p>
+                        <h2>R$ 225,00</h2>
+                    </div>
+                    <div class="summary-card receitas">
+                        <p>Receitas:</p>
+                        <h2>R$ 250,00</h2>
+                    </div>
+                 </div>
+                
+
+                <!-- Cartões de categorias -->
+                 <div class="category-cards">
+                    <div class="category-card gastos-categorias">
+                        <h3>Categorias de Gastos:</h3>
+                        <ul>
+                            <li>Casa -------------------------- R$100</li>
+                            <li>Educação --------------------- R$300</li>
+                            <li>Eletrônicos -------------------- R$300</li>
+                        </ul>
+                    </div>
+                    <div class="category-card receitas-categorias">
+                        <h3>Categorias de Receitas:</h3>
+                        <ul>
+                            <li>Investimento ---------------- R$100</li>
+                            <li>Prêmios --------------------- R$300</li>
+                            <li>Presente --------------------- R$300</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
