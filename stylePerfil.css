@@ -18,7 +18,7 @@ header p {
 }
 
 /* --- --- Conteúdo do Perfil --- --- */
-.active .user-profile {
+.active.user-profile {
     border-bottom: 3px solid #004aad; /* Adiciona a borda embaixo azul quando estiver ativo */
     padding-bottom: 5px; 
     border-radius: 5%;
