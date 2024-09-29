@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro</title>
+    <link rel="stylesheet" href="styleGeral.css">
+    <link rel="stylesheet" href="styleDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <!-- Perfil do usuário -->
+            <div class="user-profile">
+                <div class="user-icon">
+                    <a href="indexPerfil.html"><i class="fa-solid fa-circle-user"></i></a>
+                </div>
+                <a href="indexPerfil.html"><p class="user-name">Nome</p></a>
+            </div>
+
+            <!-- Botão de adicionar nova transação -->
+            <button class="new-transaction-btn">
+                <i class="fa-solid fa-plus"></i> NOVO
+            </button>
+
+            <!-- Menu principal -->
+            <nav class="menu poppins-regular">
+                <ul>
+                    <a href="indexDashboard.html">
+                        <li class="menu-item active">
+                            <i class="fa-solid fa-house"></i>
+                            <p>Dashboard</p>
+                        </li>
+                    </a>
+
+                    <a href="indexTransacoes.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <p>Transações</p>
+                        </li>
+                    </a>
+
+                    <a href="indexReceitas.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <p>Receitas</p>
+                        </li>
+                    </a>
+
+                    <a href="indexGastos.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <p>Gastos</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+
+            <!-- Menu secundário (Configurações e Ajuda) -->
+            <nav class="secondary-menu poppins-regular">
+                <ul>
+                    <a onclick = "ativaDark()">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-moon"></i> Modo Noturno
+                        </li>
+                    </a>
+                    <a href="indexAjuda.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-circle-question"></i> Ajuda
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Dashboard principal -->
+        <main class="dashboard">
+            <header>
+                <h1 class="merriweather-black">DASHBOARD</h1>
+                <p class="poppins-regular">Bem vindo(a), Fulano!</p>
+            </header>
+
+            <section class="cards">
+                <!-- Cartões de resumo -->
+                <div class="resume-cards">
+                    <div class="summary-card saldo">
+                        <p class="poppins-regular">Saldo Atual:</p>
+                        <h2>R$ 25,00</h2>
+                    </div>
+                    <div class="summary-card gastos">
+                        <p class="poppins-regular">Gastos:</p>
+                        <h2>R$ 225,00</h2>
+                    </div>
+                    <div class="summary-card receitas">
+                        <p class="poppins-regular">Receitas:</p>
+                        <h2>R$ 250,00</h2>
+                    </div>
+                </div>
+
+                <!-- Cartões de categorias -->
+                <div class="category-cards">
+                    <div class="category-card gastos-categorias">
+                        <h3 class="poppins-regular">Categorias de Gastos:</h3>
+                        <ul>
+                            <ul>
+                                <li>
+                                    <span class="category-name">Casa</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Educação</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Eletrônicos</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Lanches</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Lazer</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Saúde</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Serviços</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Mercado</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Transporte</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Vestuário</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                                <li>
+                                    <span class="category-name">Viagens</span>
+                                    <span class="category-value">R$0</span>
+                                </li>
+                            </ul>
+                            
+                        </ul>
+                    </div>
+                    <div class="category-card receitas-categorias">
+                        <h3 class="poppins-regular">Categorias de Receitas:</h3>
+                        <ul>
+                            <li>
+                                <span class="category-name">Salário</span>
+                                <span class="category-value">R$0</span>
+                            </li>
+                            <li>
+                                <span class="category-name">Investimento</span>
+                                <span class="category-value">R$0</span>
+                            </li>
+                            <li>
+                                <span class="category-name">Prêmios</span>
+                                <span class="category-value">R$0</span>
+                            </li>
+                            <li>
+                                <span class="category-name">Presente</span>
+                                <span class="category-value">R$0</span>
+                            </li>
+                            <li>
+                                <span class="category-name">Outros</span>
+                                <span class="category-value">R$0</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Programação para a Web. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

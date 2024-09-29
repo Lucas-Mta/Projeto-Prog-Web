@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuário</title>
+    <link rel="stylesheet" href="styleGeral.css">
+    <link rel="stylesheet" href="stylePerfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <!-- Perfil do usuário -->
+            <div class="active">
+                <div class="user-profile active">
+                    <div class="user-icon">
+                        <a href="indexPerfil.html"><i class="fa-solid fa-circle-user"></i></a>
+                    </div>
+                    <a href="indexPerfil.html"><p class="user-name">Nome</p></a>
+                </div>
+            </div>
+
+            <!-- Botão de adicionar nova transação -->
+            <button class="new-transaction-btn">
+                <i class="fa-solid fa-plus"></i> NOVO
+            </button>
+
+            <!-- Menu principal -->
+            <nav class="menu poppins-regular">
+                <ul>
+                    <a href="indexDashboard.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-house"></i>
+                            <p>Dashboard</p>
+                        </li>
+                    </a>
+
+                    <a href="indexTransacoes.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <p>Transações</p>
+                        </li>
+                    </a>
+
+                    <a href="indexReceitas.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <p>Receitas</p>
+                        </li>
+                    </a>
+
+                    <a href="indexGastos.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <p>Gastos</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+
+            <!-- Menu secundário (Configurações e Ajuda) -->
+            <nav class="secondary-menu poppins-regular">
+                <ul>
+                    <a onclick="ativaDark()">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-moon"></i> Modo Noturno
+                        </li>
+                    </a>
+                    <a href="indexAjuda.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-circle-question"></i> Ajuda
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo do Perfil -->
+        <main class="perfil-container">
+            <header>
+                <h1 class="merriweather-black">MEU PERFIL</h1>
+                <p class="poppins-regular">Bem vindo(a), Fulano!</p>
+            </header>
+
+            <!-- Conteúdo do perfil dentro do quadrado -->
+            <section class="profile-content">
+
+                <!-- Seção do quadrado cinza claro -->
+                <div class="profile-box">
+
+
+                    <div class="left-section">
+                        <!-- Foto do usuário -->
+                        <div class="user-photo-placeholder"></div>
+                        <!-- Aniversário -->
+                        <div class="user-birthday">
+                            <label for="birthday">Aniversário:</label>
+                            <input type="date" id="birthday" class="poppins-regular birthday-picker">
+                        </div>
+                    </div>
+
+
+                    <div class="right-section">
+                        <div class="user-info">
+                            <label for="username">Como você gostaria de ser chamado?</label>
+                            <input type="text" id="username" class="poppins-regular">
+                        </div>
+                        <div class="user-info">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" class="poppins-regular">
+                        </div>
+
+                        <div class="user-info-row"> <!-- Coloquei como uma linha que tem as duas info -->
+                            <div class="user-info">
+                                <label for="phone">Telefone:</label>
+                                <input type="text" id="phone" class="poppins-regular">
+                            </div>
+                            <div class="user-info">
+                                <label for="gender">Sexo:</label>
+                                <select id="gender" class="poppins-regular">
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Prefiro não responder</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Botão Editar -->
+                        <button class="edit-btn poppins-regular">EDITAR</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Programação para a Web. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

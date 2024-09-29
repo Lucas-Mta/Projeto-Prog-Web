@@ -1,107 +1,134 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ffffff;
-}
-
-.container {
-    display: flex;
+.perfil-container {
+    flex: 1;
+    padding: 40px;
+    margin-left: 210px; 
     height: 100vh;
+    position: relative;
 }
 
-/* Barra lateral de navegação */
-.sidebar {
-    width: 100px;
-    background-color: #fef7ff;
-    border-right: 1px solid #000;
+header h1 {
+    font-size: 40px;
+    font-weight: black;
+    color: #000;
+}
+
+header p {
+    font-size: 18px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- --- Conteúdo do Perfil --- --- */
+.active .user-profile {
+    border-bottom: 3px solid #004aad; /* Adiciona a borda embaixo azul quando estiver ativo */
+    padding-bottom: 5px; 
+    border-radius: 5%;
+    margin-bottom: -8px; /* Tirei um pouco da margem para não ficar difernte ao mudar de navegação */
+}
+
+.profile-content {
+    margin-top: 40px;
+}
+
+.profile-box {
+    background-color: #f5f5f5;
     padding: 20px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- --- Seção Esquerda --- --- */
+.left-section {
+    width: 25%;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
-.go-back {
-    text-align: center;
-}
-
-.go-back-icon {
-    font-size: 30px;
-    cursor: pointer;
-}
-
-/* Conteúdo */
-.dashboard {
-    flex: 1;
-}
-
-.dashboard-header {
-    background-color: #fef7ff;
-    padding: 50px 20px 50px 40px;
-    border-bottom: 1px solid #9287af;
-    width: 100%;
-    text-align: center;
-}
-
-.dashboard-header h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #000;
-}
-
-.dashboard-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: #f2f2f2; 
-    padding: 40px;
-    margin: 50px;
-    border-radius: 10px;
-    height: 62%;
-}
-
-
-/* Informações do Usuário*/
-
-.user-general {
-    text-align: center;
-    flex-basis: 30%;
-    margin-right: 20px; /* Define a largura da área da foto e nome */
-}
-
-.user-photo img {
+.user-photo-placeholder {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 20%;
 }
 
-.user-name {
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
+.user-birthday {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
 }
 
-/* Área das informações à direita */
-.user-info {
-    flex-basis: 65%; 
-}
-
-.user-biography, .user-birthday {
-    margin-bottom: 35px;
-}
-
-.user-biography h3, .user-birthday h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-}
-
-.user-biography p, .user-birthday p {
+.user-birthday label {
     font-size: 16px;
-    color: #333;
+    margin-bottom: 8px;
+}
+
+.birthday-picker {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #666;
+}
+
+/* --- --- Seção Direita --- --- */
+.right-section {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Estilos das caixas de inputs */
+.user-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info label {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.user-info input,
+.user-info select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+}
+
+/* --- --- Botão Editar --- --- */
+.edit-btn {
+    background-color: #004aad;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-250%);
+}
+
+.edit-btn:hover {
+    background-color: #003788;
 }

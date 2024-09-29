@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda</title>
+    <link rel="stylesheet" href = "styleGeral.css">
+    <link rel="stylesheet" href = "styleAjuda.css">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <!-- Perfil do usuário -->
+            <div class="user-profile">
+                <div class="user-icon">
+                    <a href="indexPerfil.html"><i class="fa-solid fa-circle-user"></i></a>
+                </div>
+                <a href="indexPerfil.html"><p class="user-name">Nome</p></a>
+            </div>
+
+            <!-- Botão de adicionar nova transação -->
+            <button class="new-transaction-btn">
+                <i class="fa-solid fa-plus"></i> NOVO
+            </button>
+
+            <!-- Menu principal -->
+            <nav class="menu poppins-regular">
+                <ul>
+                    <a href="indexDashboard.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-house"></i>
+                            <p>Dashboard</p>
+                        </li>
+                    </a>
+
+                    <a href="indexTransacoes.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <p>Transações</p>
+                        </li>
+                    </a>
+
+                    <a href="indexReceitas.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <p>Receitas</p>
+                        </li>
+                    </a>
+
+                    <a href="indexGastos.html">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <p>Gastos</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+
+            <!-- Menu secundário (Configurações e Ajuda) -->
+            <nav class="secondary-menu poppins-regular">
+                <ul>
+                    <a onclick = "ativaDark()">
+                        <li class="menu-item">
+                            <i class="fa-solid fa-moon"></i> Modo Noturno
+                        </li>
+                    </a>
+                    <a href="indexAjuda.html">
+                        <li class="menu-item active">
+                            <i class="fa-solid fa-circle-question"></i> Ajuda
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Dashboard principal -->
+        <main class="dashboard">
+            <header>
+                <h1 class="merriweather-black">AJUDA</h1>
+                <p class="poppins-regular">Bem vindo(a), Fulano!</p>
+            </header>
+
+            <section class="dashboard-content"></section>
+                <div class="help">
+                    <h2 class="help-header poppins-regular">Perguntas Frequentes</h2>
+
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>
+                                Como posso adicionar uma nova Receita?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                Para adicionar uma nova receita, clique em "Novo" no menu lateral e selecione "Receita". Preencha os dados da receita e confirme.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>
+                                Como posso adicionar um novo Gasto?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                Para adicionar uma novo gasto, clique em "Novo" no menu lateral e selecione "Gasto". Preencha os dados do gasto e confirme.   
+                            </p>
+                        </div>
+                    </div>
+            
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>
+                                Como criar uma nova Categoria?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                Ao criar um novo gasto ou receita, selecione a linha de "Categorias". Insira o nome da nova categoria. Você poderá escolher essa categoria ao registrar um gasto.
+                            </p>
+                        </div>
+                    </div>
+            
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>
+                                Onde posso verificar as minhas Receitas e Gastos?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                Você pode verificar todas as suas receitas e despesas na aba "Transações". Para uma visualização mais completa de cada uma, verifique nas abas "Gastos" e "Receitas".
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>
+                                Como ativar o modo noturno?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                No final da aba lateral esquerda, terá um item chamado "Modo Noturno". Ao clicar, irá definir o modo noturno para o sistema.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="questions">
+                        <div class="item-question">
+                            <p>                   
+                                Posso alterar as informações do meu perfil?
+                            </p>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="item-answer">
+                            <p>
+                                Sim, você pode clicar no seu perfil e alterar as seguintes informações: nome, foto e biografia.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+           
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Programação para a Web. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+<script>
+    var elementosDuvida = document.querySelectorAll(".questions")
+
+    elementosDuvida.forEach(function(duvida) {
+        duvida.addEventListener("click", function() {
+
+            //se esta selecionda
+            const resposta = duvida.querySelector('.item-answer');
+            
+            //esconde
+            if (resposta.style.display === "block") {
+                resposta.style.display = "none";
+            } else {
+                //mostra
+                resposta.style.display = "block";
+            }
+        });
+    });
+</script>
+
+</html>
