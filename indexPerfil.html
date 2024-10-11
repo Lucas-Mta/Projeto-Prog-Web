@@ -25,8 +25,8 @@
                 </div>
             </div>
 
-            <!-- Botão de adicionar nova transação -->
-            <button class="new-transaction-btn">
+            <!-- Botão de adicionar nova transação --> 
+            <button id="new-transaction-btn" class="new-transaction-btn">
                 <i class="fa-solid fa-plus"></i> NOVO
             </button>
 
@@ -139,6 +139,51 @@
     <footer class="footer">
         <p>&copy; 2024 Programação para a Web. Todos os direitos reservados.</p>
     </footer>
+   
+    <!-- MODAL PARA ADICIONAR NOVA TRANSAÇÃO -->
+    <div id="transaction-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Nova Transação</h2>
+            <form id="transaction-form">
+                <input type="hidden" id="tipo" name="tipo"> 
+                    
+                <label for="movimentacao">Movimentação:</label>
+                <input id="movimentacao" name="movimentacao" required>
+    
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor" required>
+    
+                <label for="categoria">Categoria:</label>
+                <select id="categoria" name="categoria" required>
+                </select>
+    
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+    
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"></textarea>
+    
+                <button type="button" onclick="adicionarTransacao()">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Menu de seleção para Gasto ou Receita -->
+    <div id="new-transaction-menu" class="transaction-menu" >
+        <ul>
+            <li onclick="selecionarTipo('receita')" class="receita">
+                <i class="fa-solid fa-arrow-up"></i>
+                <p>Receita</p>
+            </li>
+            <li onclick="selecionarTipo('gasto')" class="gasto">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <p>Gasto</p>
+            </li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
