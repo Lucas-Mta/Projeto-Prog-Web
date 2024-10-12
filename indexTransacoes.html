@@ -18,9 +18,12 @@
             <!-- Perfil do usuário -->
             <div class="user-profile">
                 <div class="user-icon">
-                    <a href="indexPerfil.html"><i class="fa-solid fa-circle-user"></i></a>
+                    <div class="user-icon">
+                        <img id="user-image" class="user-image">
+                        <i id="user-icon" class="fa-solid fa-circle-user"></i>
+                    </div>
                 </div>
-                <a href="indexPerfil.html"><p class="user-name">Nome</p></a>
+                <a href="indexPerfil.html"><p class="user-name" id="user-name">Nome</p></a>
             </div>
 
             <!-- Botão de adicionar nova transação --> 
@@ -80,7 +83,7 @@
             <div class="header-container">
                 <header>
                     <h1 class="merriweather-black">TRANSAÇÕES</h1>
-                    <p class="poppins-regular">Bem vindo(a), Fulano!</p>
+                    <p class="poppins-regular">Bem vindo(a), <span id="welcome-user-name">Fulano</span>!</p>
                 </header>
         
                 <!-- Seção de Cards de Saldo e Links -->

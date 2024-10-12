@@ -39,8 +39,8 @@ function validateEmailFormat(str) {
 }
 
 function updateName(name) {
-    document.getElementById('user-name').innerText = `${name}`;
-    document.getElementById('welcome-user-name').innerText = `Bem vindo(a), ${name}!`;
+    document.getElementById('user-name').textContent = name;
+    document.getElementById('welcome-user-name').innerText = name;
 }
 
 function updateProfileButtonEvent() {
@@ -48,31 +48,29 @@ function updateProfileButtonEvent() {
     updateButton.addEventListener('click', updateProfile);
 }
 
-//? 
 document.addEventListener('DOMContentLoaded', updateProfileButtonEvent);
 
-//arrumar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function handleFileLoad(event) {
+    const userImage = document.getElementById('user-image');
+    const profilePic = document.getElementById('profile-pic');
+    const userIcon = document.getElementById('user-icon');
+
+    userImage.src = event.target.result; // Define o 'src' do ícone de usuário e da foto de perfil com a mesma URL da imagem qeu foi carregada
+    profilePic.src = event.target.result;
+
+    userImage.style.display = 'block'; 
+    profilePic.style.display = 'block';
+    
+    userIcon.style.display = 'none'; // Troca o ícone sem foto de perfil pela foto de perfil e oculta o ícone antigo
+}
 
 function updateImage(event) {
     const input = event.target;
-    const file = input.files[0];
+    const file = input.files[0]; // Pega o primeiro arquivo selecionado
 
-    if (file) {
+    if(file) {
         const reader = new FileReader();
-
-        reader.onload = function(e) {
-            
-            const userImage = document.getElementById('user-image');
-            const profilePic = document.getElementById('profile-pic');
-            const userIcon = document.getElementById('user-icon');
-
-            userImage.src = e.target.result;
-            profilePic.src = e.target.result;
-
-            userImage.style.display = 'block'; 
-            profilePic.style.display = 'block';
-            userIcon.style.display = 'none'; // Oculta o ícone
-        }
+        reader.onload = handleFileLoad; // Cahama a função 'handleFileLoad' quando o arquivo é lido
 
         reader.readAsDataURL(file);
     }
