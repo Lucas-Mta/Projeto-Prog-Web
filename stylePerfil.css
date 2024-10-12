@@ -57,26 +57,32 @@ header p {
     align-items: center;
     background-color: #e0e0e0;
     border-radius: 20%;
+    position: relative; 
+    margin-top: 13%;
 }
 
-.user-birthday {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.user-birthday label {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-.birthday-picker {
-    padding: 10px;
+.file-input-label {
+    background-color: #d3d3d3; /* Fundo cinza claro */
+    color: black; /* Texto branco */
+    padding: 10px 20px;
+    border: none;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: #666;
+    cursor: pointer;
+    align-self: center;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-250%);
+    font-size: 0.65vw;
+}
+
+.file-input-label:hover {
+    background-color: #b3b3b3; /* Fundo azul ao passar o mouse */
+}
+
+.profile-pic {
+    display: none; 
+    width: 100%; 
+    border-radius: 20%;
 }
 
 /* --- --- Seção Direita --- --- */
@@ -84,7 +90,7 @@ header p {
     width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 35px;
 }
 
 .user-info-row {
@@ -112,6 +118,26 @@ header p {
     border: 1px solid #ccc;
     font-size: 14px;
     width: 100%;
+}
+
+.user-birthday {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.user-birthday label {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.birthday-picker {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #666;
 }
 
 /* --- --- Botão Editar --- --- */

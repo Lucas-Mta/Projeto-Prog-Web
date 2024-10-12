@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styleGeral.css">
     <link rel="stylesheet" href="stylePerfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="scriptPerfil.js"></script>
 </head>
 
 <body>
@@ -19,9 +20,13 @@
             <div class="active">
                 <div class="user-profile active">
                     <div class="user-icon">
-                        <a href="indexPerfil.html"><i class="fa-solid fa-circle-user"></i></a>
+                        <!--arrumar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                        <div class="user-icon">
+                            <img id="user-image" src="" class="user-image">
+                            <i id="user-icon" class="fa-solid fa-circle-user"></i>
+                        </div>
                     </div>
-                    <a href="indexPerfil.html"><p class="user-name">Nome</p></a>
+                    <a href="indexPerfil.html"><p class="user-name" id="user-name">Nome</p></a>
                 </div>
             </div>
 
@@ -80,8 +85,10 @@
         <!-- Conteúdo do Perfil -->
         <main class="perfil-container">
             <header>
+
                 <h1 class="merriweather-black">MEU PERFIL</h1>
-                <p class="poppins-regular">Bem vindo(a), Fulano!</p>
+                <!--arrumar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                <p class="poppins-regular" id="welcome-user-name">Bem vindo(a), Fulano!</p>
             </header>
 
             <!-- Conteúdo do perfil dentro do quadrado -->
@@ -90,32 +97,40 @@
                 <!-- Seção do quadrado cinza claro -->
                 <div class="profile-box">
 
-
                     <div class="left-section">
                         <!-- Foto do usuário -->
-                        <div class="user-photo-placeholder"></div>
-                        <!-- Aniversário -->
-                        <div class="user-birthday">
-                            <label for="birthday">Aniversário:</label>
-                            <input type="date" id="birthday" class="poppins-regular birthday-picker">
+                         <!--arrumar!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                        <div class="user-photo-placeholder">
+                            <img class="profile-pic" id="profile-pic" alt="Foto de perfil">
+                        </div>
+
+                        <div>
+                            <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="updateImage(event)">
+                            <label for="file-input" class="file-input-label poppins-regular">ESCOLHER IMAGEM</label>
                         </div>
                     </div>
 
-
+                <!-- Coloquei o aniversário na right-section-->
                     <div class="right-section">
                         <div class="user-info">
                             <label for="username">Como você gostaria de ser chamado?</label>
                             <input type="text" id="username" class="poppins-regular">
                         </div>
-                        <div class="user-info">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" class="poppins-regular">
-                        </div>
-
                         <div class="user-info-row"> <!-- Coloquei como uma linha que tem as duas info -->
                             <div class="user-info">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" class="poppins-regular" placeholder="nome@exemplo.com">
+                            </div>
+                            <div class="user-info">
+                                <label for="birthday">Aniversário:</label>
+                                <input type="date" id="birthday" class="poppins-regular birthday-picker">
+                            </div>
+                        </div>
+
+                        <div class="user-info-row"> 
+                            <div class="user-info">
                                 <label for="phone">Telefone:</label>
-                                <input type="text" id="phone" class="poppins-regular">
+                                <input type="text" id="phone" class="poppins-regular" placeholder="(xx) xxxxx-xxxx">
                             </div>
                             <div class="user-info">
                                 <label for="gender">Sexo:</label>
@@ -128,7 +143,7 @@
                         </div>
 
                         <!-- Botão Editar -->
-                        <button class="edit-btn poppins-regular">EDITAR</button>
+                        <button id="edit-btn" class="edit-btn poppins-regular">ATUALIZAR</button>
                     </div>
                 </div>
             </div>
