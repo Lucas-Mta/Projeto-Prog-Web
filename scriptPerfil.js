@@ -50,7 +50,7 @@ function updateProfileButtonEvent() {
 
 document.addEventListener('DOMContentLoaded', updateProfileButtonEvent);
 
-function handleFileLoad(event) {
+function loadFile(event) {
     const userImage = document.getElementById('user-image');
     const profilePic = document.getElementById('profile-pic');
     const userIcon = document.getElementById('user-icon');
@@ -70,7 +70,7 @@ function updateImage(event) {
 
     if(file) {
         const reader = new FileReader();
-        reader.onload = handleFileLoad; // Cahama a função 'handleFileLoad' quando o arquivo é lido
+        reader.onload = loadFile; // Cahama a função 'loadFile' quando o arquivo é lido
 
         reader.readAsDataURL(file);
     }
