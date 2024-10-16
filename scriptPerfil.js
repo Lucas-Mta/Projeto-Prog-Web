@@ -1,3 +1,5 @@
+var newUserImage = null;
+
 function updateProfile() {
     const birthday = document.getElementById('birthday').value;
     const name = document.getElementById('username').value; // Assumindo que o nome possa ser uma string qualquer sem formato específico, não fiz validação
@@ -24,13 +26,16 @@ function updateProfile() {
 
     updateName(name);
 
-
-    // nao funciona ainda
     localStorage.setItem('localBirthday', birthday);
     localStorage.setItem('localUsername', name); 
     localStorage.setItem('localEmail', email);
     localStorage.setItem('localPhone', phoneNumber);
     localStorage.setItem('localGender', gender);
+
+    if(newUserImage) {
+        localStorage.setItem('localUser-image', newUserImage);
+        localStorage.setItem('localProfile-pic', newUserImage);
+    }
 
     alert("Perfil atualizado com sucesso!");
 }
@@ -68,6 +73,8 @@ function loadFile(event) {
 
     const fileSrc = event.target.result;
 
+    newUserImage = fileSrc;
+
     userImage.src = fileSrc; // Define o 'src' do ícone de usuário e da foto de perfil com a mesma URL da imagem qeu foi carregada
     profilePic.src = fileSrc;
 
@@ -75,9 +82,6 @@ function loadFile(event) {
     profilePic.style.display = 'block';
     
     userIcon.style.display = 'none'; // Troca o ícone sem foto de perfil pela foto de perfil e oculta o ícone antigo
-
-    localStorage.setItem('localUser-image', fileSrc);
-    localStorage.setItem('localProfile-pic', fileSrc);
 }
 
 function updateImage(event) {
