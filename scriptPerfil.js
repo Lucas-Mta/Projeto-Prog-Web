@@ -24,6 +24,14 @@ function updateProfile() {
 
     updateName(name);
 
+
+    // nao funciona ainda
+    localStorage.setItem('localBirthday', birthday);
+    localStorage.setItem('localUsername', username); 
+    localStorage.setItem('localEmail', email);
+    localStorage.setItem('localPhone', phoneNumber);
+    localStorage.setItem('localGender', gender);
+
     alert("Perfil atualizado com sucesso!");
 }
 
@@ -39,8 +47,11 @@ function validateEmailFormat(str) {
 }
 
 function updateName(name) {
-    document.getElementById('user-name').textContent = name;
+    document.getElementById('user-name').innerText = name;
     document.getElementById('welcome-user-name').innerText = name;
+
+    localStorage.setItem('localUser-name', name);
+    localStorage.setItem('localWelcome-user-name', name);    
 }
 
 function updateProfileButtonEvent() {
@@ -55,13 +66,18 @@ function loadFile(event) {
     const profilePic = document.getElementById('profile-pic');
     const userIcon = document.getElementById('user-icon');
 
-    userImage.src = event.target.result; // Define o 'src' do ícone de usuário e da foto de perfil com a mesma URL da imagem qeu foi carregada
-    profilePic.src = event.target.result;
+    const fileSrc = event.target.result;
+
+    userImage.src = fileSrc; // Define o 'src' do ícone de usuário e da foto de perfil com a mesma URL da imagem qeu foi carregada
+    profilePic.src = fileSrc;
 
     userImage.style.display = 'block'; 
     profilePic.style.display = 'block';
     
     userIcon.style.display = 'none'; // Troca o ícone sem foto de perfil pela foto de perfil e oculta o ícone antigo
+
+    localStorage.setItem('localUser-image', fileSrc);
+    localStorage.setItem('localProfile-pic', fileSrc);
 }
 
 function updateImage(event) {
@@ -75,3 +91,59 @@ function updateImage(event) {
         reader.readAsDataURL(file);
     }
 }
+
+function keepUserProfileInfo() {
+    const keepBirthday = localStorage.getItem('localBirthday');
+    const keepUserNameProfile = localStorage.getItem('localUsername');
+    const keepEmail = localStorage.getItem('localEmail');
+    const keepPhone = localStorage.getItem('localPhone');
+    const keepGender = localStorage.getItem('localGender');
+   
+    if (keepBirthday) 
+        document.getElementById('birthday').value = keepBirthday;
+
+    if (keepUserNameProfile) 
+        document.getElementById('username').value = keepUserNameProfile;
+    
+    if (keepEmail) 
+        document.getElementById('email').value = keepEmail;
+    
+    if (keepPhone) 
+        document.getElementById('phone').value = keepPhone;
+    
+    if (keepGender) 
+        document.getElementById('gender').value = keepGender;
+}
+
+function keepUserNameInfo() {
+    const keepUserNameSideBar = localStorage.getItem('localUser-name');
+    const keepWelcomeUserName = localStorage.getItem('localWelcome-user-name');
+    
+    if (keepUserNameSideBar) 
+        document.getElementById('user-name').innerText = keepUserNameSideBar;
+    
+    if (keepWelcomeUserName) 
+        document.getElementById('welcome-user-name').innerText = keepWelcomeUserName;
+}
+
+function keepUserPic() {
+    const keepUserImageSideBar = localStorage.getItem('localUser-image');
+    const keepProfilePicProfile = localStorage.getItem('localProfile-pic');
+
+    if (keepUserImageSideBar) {
+        const userImage = document.getElementById('user-image');
+        const profilePic = document.getElementById('profile-pic');
+        const userIcon = document.getElementById('user-icon');
+
+        userImage.src = keepUserImageSideBar;
+        profilePic.src = keepProfilePicProfile;
+
+        userImage.style.display = 'block'; 
+        profilePic.style.display = 'block';
+        userIcon.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', keepUserProfileInfo);
+document.addEventListener('DOMContentLoaded', keepUserNameInfo);
+document.addEventListener('DOMContentLoaded', keepProfilePicProfile);
