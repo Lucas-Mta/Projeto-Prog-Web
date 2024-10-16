@@ -27,7 +27,7 @@ function updateProfile() {
 
     // nao funciona ainda
     localStorage.setItem('localBirthday', birthday);
-    localStorage.setItem('localUsername', username); 
+    localStorage.setItem('localUsername', name); 
     localStorage.setItem('localEmail', email);
     localStorage.setItem('localPhone', phoneNumber);
     localStorage.setItem('localGender', gender);
@@ -92,58 +92,14 @@ function updateImage(event) {
     }
 }
 
-function keepUserProfileInfo() {
-    const keepBirthday = localStorage.getItem('localBirthday');
-    const keepUserNameProfile = localStorage.getItem('localUsername');
-    const keepEmail = localStorage.getItem('localEmail');
-    const keepPhone = localStorage.getItem('localPhone');
-    const keepGender = localStorage.getItem('localGender');
-   
-    if (keepBirthday) 
-        document.getElementById('birthday').value = keepBirthday;
+function keepUserProfilePic() {
+    const keepUserImage = localStorage.getItem('localUser-image');
 
-    if (keepUserNameProfile) 
-        document.getElementById('username').value = keepUserNameProfile;
-    
-    if (keepEmail) 
-        document.getElementById('email').value = keepEmail;
-    
-    if (keepPhone) 
-        document.getElementById('phone').value = keepPhone;
-    
-    if (keepGender) 
-        document.getElementById('gender').value = keepGender;
-}
-
-function keepUserNameInfo() {
-    const keepUserNameSideBar = localStorage.getItem('localUser-name');
-    const keepWelcomeUserName = localStorage.getItem('localWelcome-user-name');
-    
-    if (keepUserNameSideBar) 
-        document.getElementById('user-name').innerText = keepUserNameSideBar;
-    
-    if (keepWelcomeUserName) 
-        document.getElementById('welcome-user-name').innerText = keepWelcomeUserName;
-}
-
-function keepUserPic() {
-    const keepUserImageSideBar = localStorage.getItem('localUser-image');
-    const keepProfilePicProfile = localStorage.getItem('localProfile-pic');
-
-    if (keepUserImageSideBar) {
-        const userImage = document.getElementById('user-image');
+    if (keepUserImage) {
         const profilePic = document.getElementById('profile-pic');
-        const userIcon = document.getElementById('user-icon');
-
-        userImage.src = keepUserImageSideBar;
-        profilePic.src = keepProfilePicProfile;
-
-        userImage.style.display = 'block'; 
+        profilePic.src = keepUserImage;
         profilePic.style.display = 'block';
-        userIcon.style.display = 'none';
     }
 }
 
-document.addEventListener('DOMContentLoaded', keepUserProfileInfo);
-document.addEventListener('DOMContentLoaded', keepUserNameInfo);
-document.addEventListener('DOMContentLoaded', keepProfilePicProfile);
+document.addEventListener('DOMContentLoaded', keepUserProfilePic);

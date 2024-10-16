@@ -128,3 +128,56 @@ window.onclick = function(event) {
     }
 };
 
+//------------------------------------------------//
+// Scrip  geral para atualizar o nome e foto de perfil em todas as páginas
+function keepUserProfileInfo() {
+    const keepBirthday = localStorage.getItem('localBirthday');
+    const keepUserNameProfile = localStorage.getItem('localUsername');
+    const keepEmail = localStorage.getItem('localEmail');
+    const keepPhone = localStorage.getItem('localPhone');
+    const keepGender = localStorage.getItem('localGender');
+   
+    if (keepBirthday) 
+        document.getElementById('birthday').value = keepBirthday;
+
+    if (keepUserNameProfile) 
+        document.getElementById('username').value = keepUserNameProfile;
+    
+    if (keepEmail) 
+        document.getElementById('email').value = keepEmail;
+    
+    if (keepPhone) 
+        document.getElementById('phone').value = keepPhone;
+    
+    if (keepGender) 
+        document.getElementById('gender').value = keepGender;
+}
+
+function keepUserNameInfo() {
+    const keepUserNameSideBar = localStorage.getItem('localUser-name');
+    const keepWelcomeUserName = localStorage.getItem('localWelcome-user-name');
+    
+    if (keepUserNameSideBar) 
+        document.getElementById('user-name').innerText = keepUserNameSideBar;
+    
+    if (keepWelcomeUserName) 
+        document.getElementById('welcome-user-name').innerText = keepWelcomeUserName;
+}
+
+function keepUserIcon() {
+    const keepUserImage = localStorage.getItem('localUser-image');
+
+    if (keepUserImage) {
+        const userImage = document.getElementById('user-image');
+        const userIcon = document.getElementById('user-icon');
+
+        userImage.src = keepUserImage;
+
+        userImage.style.display = 'block'; 
+        userIcon.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', keepUserProfileInfo);
+document.addEventListener('DOMContentLoaded', keepUserNameInfo);
+document.addEventListener('DOMContentLoaded', keepUserIcon);
