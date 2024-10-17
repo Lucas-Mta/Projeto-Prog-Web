@@ -1,3 +1,22 @@
+//Função para o menu ajuda
+var elementosDuvida = document.querySelectorAll(".questions")
+    
+elementosDuvida.forEach(function(duvida) {
+    duvida.addEventListener("click", function() {
+
+        //se esta selecionda
+        const resposta = duvida.querySelector('.item-answer');
+        
+        //esconde
+        if (resposta.style.display === "block") {
+            resposta.style.display = "none";
+        } else {
+            //mostra
+            resposta.style.display = "block";
+        }
+    });
+});
+
 // Listas de gastos
 const categoriasGastos = [
     "Casa", "Educação", "Eletrônicos", "Lanches", "Lazer",
@@ -127,3 +146,8 @@ window.onclick = function(event) {
         fecharModal();
     }
 };
+
+// Função para ativar o modo noturno
+function ativaDark() {
+
+}
