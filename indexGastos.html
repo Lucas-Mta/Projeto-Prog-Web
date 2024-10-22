@@ -64,8 +64,8 @@
             <!-- Menu secundário (Configurações e Ajuda) -->
             <nav class="secondary-menu poppins-regular">
                 <ul>
-                    <li class="menu-item">
-                        <a onclick="ativaDark()">
+                    <li class="change-theme-button" >
+                        <a id="change-theme-btn">
                             <i class="fa-solid fa-moon"></i> Modo Noturno
                         </a>
                     </li>
@@ -133,7 +133,7 @@
                 <div class="transaction-table">
                     <table>
                         <thead>
-                            <tr>
+                            <tr class="title">
                                 <th>MOVIMENTAÇÕES</th>
                                 <th>VALOR GASTO</th>
                                 <th>CATEGORIA</th>
@@ -141,7 +141,7 @@
                                 <th>DESCRIÇÃO</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="content">
                             <tr>
                                 <td>Festa Universitária</td>
                                 <td>R$200,00</td>
@@ -219,6 +219,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script defer src="darkMode.js"></script>
 
 </body>
 

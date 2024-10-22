@@ -64,12 +64,12 @@
             <!-- Menu secundário (Configurações e Ajuda) -->
             <nav class="secondary-menu poppins-regular">
                 <ul>
-                    <li class="menu-item">
-                        <a onclick="ativaDark()">
+                    <li class="change-theme-button" >
+                        <a id="change-theme-btn">
                             <i class="fa-solid fa-moon"></i> Modo Noturno
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="indexAjuda.html">
                             <i class="fa-solid fa-circle-question"></i> Ajuda
                         </a>
@@ -228,25 +228,8 @@
         </ul>
     </div>
 
-    <script src="script.js">
-        var elementosDuvida = document.querySelectorAll(".questions")
-    
-        elementosDuvida.forEach(function(duvida) {
-            duvida.addEventListener("click", function() {
-    
-                //se esta selecionda
-                const resposta = duvida.querySelector('.item-answer');
-                
-                //esconde
-                if (resposta.style.display === "block") {
-                    resposta.style.display = "none";
-                } else {
-                    //mostra
-                    resposta.style.display = "block";
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
+    <script defer src="darkMode.js"></script>
     
 </body>
 </html>
