@@ -1,18 +1,18 @@
 //Função para o menu ajuda
-var elementosDuvida = document.querySelectorAll(".questions")
+var helpElements = document.querySelectorAll(".questions")
     
-elementosDuvida.forEach(function(duvida) {
-    duvida.addEventListener("click", function() {
+helpElements.forEach(function(question) {
+    question.addEventListener("click", function() {
 
         //se esta selecionda
-        const resposta = duvida.querySelector('.item-answer');
+        const answer = question.querySelector('.item-answer');
         
         //esconde
-        if (resposta.style.display === "block") {
-            resposta.style.display = "none";
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
         } else {
             //mostra
-            resposta.style.display = "block";
+            answer.style.display = "block";
         }
     });
 });
