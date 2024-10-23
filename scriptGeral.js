@@ -1,4 +1,5 @@
 /* ----------------- MENU ---------------- */
+let isDarkMode;
 
 // Função para criar o menu dinamicamente
 function createMenu() {
@@ -121,9 +122,49 @@ function createMenu() {
         isDarkMode = !isDarkMode;
         changeTheme();
         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        // updateThemeIcon();
+        localStorage.setItem('themeIcon', isDarkMode ? 'fa-sun' : 'fa-moon');
+        localStorage.setItem('themeText', isDarkMode ? 'Modo Claro' : 'Modo Escuro');
     });
 }
+
+// Função executada quando carregar a página
+window.onload = function () {
+    
+    // Verificar o tema, ícone e texto sobre o modo escuro salvo no localStorage
+    const savedTheme = localStorage.getItem('theme');
+    const savedThemeIcon = localStorage.getItem('themeIcon') || 'fa-moon'; // valor padrão
+    const savedThemeText = localStorage.getItem('themeText') || 'Modo Escuro'; // valor padrão
+    
+    if (savedTheme === 'dark') {
+        isDarkMode = true;
+    } else {
+        isDarkMode = false;
+    }
+
+    // Aplica o tema da página
+    changeTheme(); 
+    
+    // Cria o menu 
+    createMenu();
+
+    // Atualizar o ícone e texto do tema no menu
+    const themeBtn = document.querySelector('#change-theme-btn');
+    if (themeBtn) {
+        const themeIcon = themeBtn.querySelector('i');
+        const themeText = themeBtn.querySelector('p');
+
+        themeIcon.classList.remove('fa-moon', 'fa-sun');
+        themeIcon.classList.add(savedThemeIcon);
+        themeText.textContent = savedThemeText;
+    }
+
+    // Atualiza as outras funcionalidades
+    highlightActiveMenu();
+    keepUserProfileInfo();
+    keepUserNameInfo();
+    keepUserIcon();
+
+};
 
 // Função para destacar o item ativo no menu
 function highlightActiveMenu() {
@@ -135,28 +176,12 @@ function highlightActiveMenu() {
     });
 }
 
-// Função executada ao carregar a página
-window.onload = function () {
-    createMenu();
-    highlightActiveMenu();
-    keepUserProfileInfo();
-    keepUserNameInfo();
-    keepUserIcon();
-
-    // Verifica o tema salvo no localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme == 'dark') {
-        isDarkMode = true;
-    } 
-    changeTheme(); 
-};
-
 /* ----------------- BOTÃO NOVO ---------------- */
 
 // Listas de categorias
 const expenseCategories = [
-    "Casa", "Educação", "Eletrônicos", "Lanches", "Lazer",
-    "Saúde", "Serviços", "Mercado", "Transporte", "Vestuário", "Viagens", "Outros"
+    "Casa", "Educação", "Eletrônicos", "Lanches", "Lazer","Saúde", 
+    "Serviços", "Mercado", "Transporte", "Vestuário", "Viagens", "Outros"
 ];
 
 const incomeCategories = [
@@ -321,12 +346,15 @@ function keepUserIcon() {
 
 // Altera entre os temas
 function changeTheme() {
+
     if (isDarkMode) {
         turnOnDarkMode();
+        updateThemeIcon();
     } else {
         turnOffDarkMode();
+        updateThemeIcon();
     }
-    updateThemeIcon();
+
 }
 
 const turnOnDarkMode = () => {
@@ -360,16 +388,22 @@ const turnOffDarkMode = () => {
 
 // Atualiza o ícone de tema
 function updateThemeIcon() {
-    const themeIcon = document.querySelector('#change-theme-btn i'); 
-    const themeText = document.querySelector('#change-theme-btn p'); 
+    const themeBtn = document.querySelector('#change-theme-btn'); // Seleciona a tag <a>
+    
+    if (themeBtn) {
+        const themeIcon = themeBtn.querySelector('i');  // Seleciona o ícone dentro de <a>
+        const themeText = themeBtn.querySelector('p');  // Seleciona o texto dentro de <a>
 
-    if (isDarkMode) {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-        themeText.textContent = 'Modo Claro'; 
-    } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-        themeText.textContent = 'Modo Escuro'; 
+        if (isDarkMode) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            themeText.textContent = 'Modo Claro';
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            themeText.textContent = 'Modo Escuro';
+        }
     }
 }
+
+
