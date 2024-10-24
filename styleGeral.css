@@ -58,7 +58,8 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* --- --- --- Barra lateral --- --- --- */
@@ -131,16 +132,6 @@ body {
     background-color: #c5ba55;
 }
 
-
-
-
-
-
-
-
-
-
-
 /* --- --- Menus --- --- */
 .menu {
     flex-grow: 1;
@@ -163,6 +154,7 @@ body {
     color: var(--text-color);
     cursor: pointer;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .menu-item i {
@@ -176,43 +168,27 @@ body {
     border-radius: 8px;
 }
 
+/* Barra esquerda do menu ativo */
+.menu-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 4px; /* Largura da barra */
+    background-color: #004aab;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.menu-item.active i,
+.menu-item.active p {
+    color: #004aab;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
 .secondary-menu {
     margin-top: auto; /* Deixa o menu secundário sempre no final da aba lateral*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Quadrado que indica a aba ativa */
-.menu a.active {
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-.menu a.active::before {
-    content: "";
-    position: absolute;
-    left: -22px;
-    width: 10px;
-    height: 38px;
-    background-color: #004aad;
-    border-radius: 4px;
 }
 
 /* --- --- --- DASHBOARD --- --- --- */
@@ -221,8 +197,8 @@ body {
     padding: 40px;
     margin-left: 210px; 
     overflow-y: auto; /* Adiciona scroll no dashboard se o conteúdo for maior que a tela */
-    height: 100vh; 
     position: relative;
+    box-sizing: border-box;
 }
 
 header h1 {
@@ -239,15 +215,16 @@ header p {
 /* --- --- --- FOOTER --- --- --- */
 .footer {
     background-color: var(--sidebar-color);
-    padding: 10px 0; 
+    padding: 10px 0;
     text-align: center;
-    width: calc(100% - 210px); /* Mantém a largura alinhada ao dashboard */
-    margin-left: 210px; /* Alinhar com o dashboard */
-    border: none; 
+    width: 100%; 
+    border: none;
     position: absolute;
     bottom: 0;
+    left: 0;
     font-size: 12px;
-    color: var(--complemental-text-color); 
+    color: var(--complemental-text-color);
+    box-sizing: content-box; /* O padding da dashboard não vai afetar o footer */
 }
 
 .footer p {

@@ -7,12 +7,16 @@ function createMenu() {
         <!-- Aba de Navegação Lateral -->
 
         <aside class="sidebar">
+
             <div class="user-profile">
-                <div class="user-icon">
-                    <img id="user-image" class="user-image" alt="User Image">
-                    <i id="user-icon" class="fa-solid fa-circle-user"></i>
-                </div>
-                <a href="indexPerfil.html"><p class="user-name" id="user-name">Nome</p></a>
+                <a href="indexPerfil.html">
+                    <div class="user-icon">
+                        <img id="user-image" class="user-image" alt="User Image">
+                        <i id="user-icon" class="fa-solid fa-circle-user"></i>
+                    </div>
+                
+                    <p class="user-name" id="user-name">Nome</p>
+                </a>
             </div>
 
             <button id="new-transaction-btn" class="new-transaction-btn">
@@ -168,12 +172,35 @@ window.onload = function () {
 
 // Função para destacar o item ativo no menu
 function highlightActiveMenu() {
-    const menuItems = document.querySelectorAll('.menu-item a');
-    menuItems.forEach(item => {
-        if (item.href === window.location.href) {
-            item.parentElement.classList.add('active');
-        }
+    // Seleciona todos os <a> dentro do menu
+    const menuLinks = document.querySelectorAll('.menu a, .secondary-menu a');
+
+    // Loop por todos os links no menu
+    menuLinks.forEach(link => {
+        // Verifica se o href do link corresponde com a URL
+        if (link.href === window.location.href) {
+            // Encontra o <li> associado 
+            const menuItem = link.querySelector('.menu-item');
+            if (menuItem) {
+                // Adiciona o 'active'
+                menuItem.classList.add('active'); 
+            }
+        }   
     });
+
+    highlightProfile();
+}
+
+// Função para destacar o perfil 
+function highlightProfile() {
+    const profileLink = document.querySelector('.user-profile a');
+
+    // Verifica se o href do link corresponde com a URL do perfil
+    if (profileLink.href === window.location.href) {
+        // Adiciona a classe 'active'
+        const userProfile = document.querySelector('.user-profile');
+        userProfile.classList.add('active');
+    }
 }
 
 /* ----------------- BOTÃO NOVO ---------------- */
@@ -340,7 +367,12 @@ function keepUserIcon() {
         userImage.style.display = 'block';
         userIcon.style.display = 'none';
     }
-}
+} 
+
+document.addEventListener('DOMContentLoaded', keepUserProfileInfo);
+document.addEventListener('DOMContentLoaded', keepUserNameInfo);
+document.addEventListener('DOMContentLoaded', keepUserIcon);
+
 
 /* ----------------- MODO NOTURNO ---------------- */
 

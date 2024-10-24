@@ -1,4 +1,4 @@
-.perfil-container {
+.profile-container {
     flex: 1;
     padding: 40px;
     margin-left: 210px; 
@@ -18,8 +18,8 @@ header p {
 }
 
 /* --- --- Conteúdo do Perfil --- --- */
-.active.user-profile {
-    border-bottom: 3px solid #004aad; /* Adiciona a borda embaixo azul quando estiver ativo */
+.user-profile.active {
+    border-bottom: 4px solid #004aad; /* Adiciona a borda embaixo azul quando estiver ativo */
     padding-bottom: 5px; 
     border-radius: 5%;
     margin-bottom: -8px; /* Tirei um pouco da margem para não ficar difernte ao mudar de navegação */
@@ -32,33 +32,35 @@ header p {
 .profile-box {
     background-color: var(--background-item);
     padding: 20px;
-    height: 400px;
+    height: auto;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 /* --- --- Seção Esquerda --- --- */
 .left-section {
     width: 25%;
-    margin-left: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
+    position: relative;
 }
 
 .user-photo-placeholder {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #e0e0e0;
     border-radius: 20%;
     position: relative; 
-    margin-top: 13%;
 }
 
 .file-input-label {
@@ -91,6 +93,8 @@ header p {
     display: flex;
     flex-direction: column;
     gap: 35px;
+    position: relative;
+    justify-content: center;
 }
 
 .user-info-row {
@@ -143,6 +147,14 @@ header p {
 }
 
 /* --- --- Botão Editar --- --- */
+.button-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .edit-btn {
     background-color: #004aad;
     color: #fff;
@@ -150,10 +162,6 @@ header p {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    align-self: center;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-250%);
 }
 
 .edit-btn:hover {
@@ -168,6 +176,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     filter: var(--calendar-color);
 }
-
 
 
