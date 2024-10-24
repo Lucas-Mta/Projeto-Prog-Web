@@ -61,7 +61,8 @@ function updateName(name) {
 
 function updateProfileButtonEvent() {
     const updateButton = document.getElementById('edit-btn'); 
-    updateButton.addEventListener('click', updateProfile);
+
+    if (updateButton !== null)  updateButton.addEventListener('click', updateProfile);
 }
 
 document.addEventListener('DOMContentLoaded', updateProfileButtonEvent);
@@ -90,8 +91,8 @@ function updateImage(event) {
 
     if(file) {
         const reader = new FileReader();
-        reader.onload = loadFile; // Cahama a função 'loadFile' quando o arquivo é lido
-
+        reader.onload = function(event) { loadFile(event) }
+        
         reader.readAsDataURL(file);
     }
 }

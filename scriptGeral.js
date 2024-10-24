@@ -133,12 +133,15 @@ function createMenu() {
 
 // Função executada quando carregar a página
 window.onload = function () {
-    
+
+    // Cria o menu 
+    createMenu();
+
     // Verificar o tema, ícone e texto sobre o modo escuro salvo no localStorage
     const savedTheme = localStorage.getItem('theme');
     const savedThemeIcon = localStorage.getItem('themeIcon') || 'fa-moon'; // valor padrão
     const savedThemeText = localStorage.getItem('themeText') || 'Modo Escuro'; // valor padrão
-    
+
     if (savedTheme === 'dark') {
         isDarkMode = true;
     } else {
@@ -146,10 +149,8 @@ window.onload = function () {
     }
 
     // Aplica o tema da página
-    changeTheme(); 
-    
-    // Cria o menu 
-    createMenu();
+    changeTheme();
+
 
     // Atualizar o ícone e texto do tema no menu
     const themeBtn = document.querySelector('#change-theme-btn');
@@ -163,11 +164,14 @@ window.onload = function () {
     }
 
     // Atualiza as outras funcionalidades
-    highlightActiveMenu();
-    keepUserProfileInfo();
-    keepUserNameInfo();
-    keepUserIcon();
+    setTimeout(() => {
+        keepUserProfileInfo();
+        keepUserNameInfo();
+        keepUserIcon();
+    }, 100)
 
+
+    highlightActiveMenu();
 };
 
 // Função para destacar o item ativo no menu
@@ -183,9 +187,9 @@ function highlightActiveMenu() {
             const menuItem = link.querySelector('.menu-item');
             if (menuItem) {
                 // Adiciona o 'active'
-                menuItem.classList.add('active'); 
+                menuItem.classList.add('active');
             }
-        }   
+        }
     });
 
     highlightProfile();
@@ -207,7 +211,7 @@ function highlightProfile() {
 
 // Listas de categorias
 const expenseCategories = [
-    "Casa", "Educação", "Eletrônicos", "Lanches", "Lazer","Saúde", 
+    "Casa", "Educação", "Eletrônicos", "Lanches", "Lazer", "Saúde",
     "Serviços", "Mercado", "Transporte", "Vestuário", "Viagens", "Outros"
 ];
 
@@ -254,6 +258,7 @@ function fillCategories(type) {
 
 // Função para abrir o MODAL
 function openModal() {
+    limparFormulario();
     var modal = document.getElementById("transaction-modal");
     modal.style.display = "flex";
 }
@@ -328,19 +333,19 @@ function keepUserProfileInfo() {
     const keepPhone = localStorage.getItem('localPhone');
     const keepGender = localStorage.getItem('localGender');
 
-    if (keepBirthday)
+    if (keepBirthday && document.getElementById('birthday') !== null)
         document.getElementById('birthday').value = keepBirthday;
 
-    if (keepUserNameProfile)
+    if (keepUserNameProfile && document.getElementById('username') !== null)
         document.getElementById('username').value = keepUserNameProfile;
 
-    if (keepEmail)
+    if (keepEmail && document.getElementById('email') !== null)
         document.getElementById('email').value = keepEmail;
 
-    if (keepPhone)
+    if (keepPhone && document.getElementById('phone') !== null)
         document.getElementById('phone').value = keepPhone;
 
-    if (keepGender)
+    if (keepGender && document.getElementById('gender') !== null)
         document.getElementById('gender').value = keepGender;
 }
 
@@ -367,12 +372,7 @@ function keepUserIcon() {
         userImage.style.display = 'block';
         userIcon.style.display = 'none';
     }
-} 
-
-document.addEventListener('DOMContentLoaded', keepUserProfileInfo);
-document.addEventListener('DOMContentLoaded', keepUserNameInfo);
-document.addEventListener('DOMContentLoaded', keepUserIcon);
-
+}
 
 /* ----------------- MODO NOTURNO ---------------- */
 
@@ -421,7 +421,7 @@ const turnOffDarkMode = () => {
 // Atualiza o ícone de tema
 function updateThemeIcon() {
     const themeBtn = document.querySelector('#change-theme-btn'); // Seleciona a tag <a>
-    
+
     if (themeBtn) {
         const themeIcon = themeBtn.querySelector('i');  // Seleciona o ícone dentro de <a>
         const themeText = themeBtn.querySelector('p');  // Seleciona o texto dentro de <a>
