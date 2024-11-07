@@ -58,7 +58,8 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* --- --- --- Barra lateral --- --- --- */
@@ -68,6 +69,7 @@ body {
     background-color: var(--sidebar-color);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: fixed; 
     top: 0;
     left: 0;
@@ -83,7 +85,6 @@ body {
 .user-profile a {
     text-decoration: none;
 }
-
 
 .user-icon i {
     font-size: 85px;
@@ -131,59 +132,35 @@ body {
     background-color: #c5ba55;
 }
 
-/* --- --- Menu Principal --- --- */
+/* --- --- Menus --- --- */
 .menu {
-    margin-bottom: 120px;
+    flex-grow: 1;
 }
 
-.menu ul {
+.menu ul, .secondary-menu ul {
     list-style: none;
+    padding: 0;
 }
 
-.menu ul a {
+.menu ul a, .secondary-menu ul a {
     text-decoration: none;
 }
 
-.menu ul li a {
-    color: var(--text-color);
-}
-
 .menu-item {
-    padding: 10px;
-    font-size: 16px;
-    color:var(--text-color);
-    cursor: pointer;
-    position: relative;
-    /* Adicionei isso para manipular o quadrado indicador */
-}
-
-.menu-item a {
     display: flex;
-    align-items: center; 
-    text-decoration: none; 
-    color: inherit;
-    gap: 15px;
-}
-
-.change-theme-button {
+    align-items: center;
     padding: 10px;
     font-size: 16px;
     color: var(--text-color);
     cursor: pointer;
     position: relative;
+    transition: all 0.3s ease;
 }
 
-.change-theme-button a {
-    display: flex;
-    align-items: center; 
-    text-decoration: none; 
-    color: inherit;
-    gap: 15px;
-}
-
-.change-theme-button:hover {
-    background-color: var(--hover-color);
-    border-radius: 8px;
+.menu-item i {
+    min-width: 24px;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .menu-item:hover {
@@ -191,31 +168,28 @@ body {
     border-radius: 8px;
 }
 
-/* Quadrado que indica a aba ativa */
+/* Barra esquerda do menu ativo */
 .menu-item.active::before {
-    content: "";
+    content: '';
     position: absolute;
-    left: -22px;
-    width: 10px;
-    height: 37px;
-    background-color: #004aad;
+    left: 0;
+    height: 100%;
+    width: 4px; /* Largura da barra */
+    background-color: #004aab;
     border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
-.menu-item.active {
-    color:var(--text-color);
+.menu-item.active i,
+.menu-item.active p {
+    color: #004aab;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-/* --- --- Menu Secundário --- --- */
-.secondary-menu ul {
-    list-style: none;
+.secondary-menu {
+    margin-top: auto; /* Deixa o menu secundário sempre no final da aba lateral*/
 }
-
-.secondary-menu a {
-    text-decoration: none;
-}
-
 
 /* --- --- --- DASHBOARD --- --- --- */
 .dashboard {
@@ -223,8 +197,8 @@ body {
     padding: 40px;
     margin-left: 210px; 
     overflow-y: auto; /* Adiciona scroll no dashboard se o conteúdo for maior que a tela */
-    height: 100vh; 
     position: relative;
+    box-sizing: border-box;
 }
 
 header h1 {
@@ -241,15 +215,16 @@ header p {
 /* --- --- --- FOOTER --- --- --- */
 .footer {
     background-color: var(--sidebar-color);
-    padding: 10px 0; 
+    padding: 10px 0;
     text-align: center;
-    width: calc(100% - 210px); /* Mantém a largura alinhada ao dashboard */
-    margin-left: 210px; /* Alinhar com o dashboard */
-    border: none; 
+    width: 100%; 
+    border: none;
     position: absolute;
     bottom: 0;
+    left: 0;
     font-size: 12px;
-    color: var(--complemental-text-color); 
+    color: var(--complemental-text-color);
+    box-sizing: content-box; /* O padding da dashboard não vai afetar o footer */
 }
 
 .footer p {
