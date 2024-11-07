@@ -92,7 +92,7 @@ function createMenu() {
             <div class="modal-content">
                 <span class="close-btn" onclick="closeModal()">&times;</span>
                 <h2>Nova Transação</h2>
-                <form id="transaction-form">
+                <form id="transaction-form" action="recebeTransacao.php" method="post" onsubmit="addTransaction(event)">
                     <input type="hidden" id="type" name="type">
                         
                     <label for="movement">Movimentação:</label>
@@ -111,7 +111,7 @@ function createMenu() {
                     <label for="description">Descrição:</label>
                     <textarea id="description" name="description"></textarea>
         
-                    <button type="button" onclick="addTransaction()">Adicionar</button>
+                    <button type="submit">Adicionar</button>
                 </form>
             </div>
         </div>
@@ -276,7 +276,9 @@ function closeMenu() {
 }
 
 // Função para adicionar uma nova transação (gasto ou receita)
-function addTransaction() {
+function addTransaction(event) {
+    event.preventDefault();
+
     var type = document.getElementById("type").value;
     var movement = document.getElementById("movement").value;
     var amount = document.getElementById("amount").value;
@@ -302,6 +304,9 @@ function addTransaction() {
     }
 
     alert("Transação adicionada com sucesso: " + type);
+    
+    event.target.submit();
+
     limparFormulario();
     closeModal();
 }
