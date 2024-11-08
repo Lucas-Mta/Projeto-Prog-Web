@@ -1,6 +1,6 @@
 <?php
 
-require 'index.php';
+require 'conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = htmlspecialchars($_POST['type']);
