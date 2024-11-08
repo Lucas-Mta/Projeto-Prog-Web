@@ -10,6 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = htmlspecialchars($_POST['date']);
     $description = htmlspecialchars($_POST['description'] ?? '');
 
+    echo "<h2>Dados da Transação Recebida:</h2>";
+    echo "Tipo: $type<br>";
+    echo "Movimentação: $movement<br>";
+    echo "Valor: $amount<br>";
+    echo "Categoria: $category<br>";
+    echo "Data: $date<br>";
+    echo "Descrição: $description<br>";
+
     try {
         $conn = conectar();
 
