@@ -26,20 +26,46 @@
 
                 <!-- Seção de Cards de Saldo e Links -->
                 <section class="balance-cards">
+                    <?php
+                    include 'conexao.php';
+                    try {
+                        // Consulta para calcular o total de receitas
+                        $sqlReceitas = "SELECT SUM(valor) AS total_receitas FROM receitas";
+                        $stmtReceitas = $pdo->prepare($sqlReceitas);
+                        $stmtReceitas->execute();
+                        $totalReceitas = $stmtReceitas->fetch(PDO::FETCH_ASSOC)['total_receitas'] ?? 0;
+
+                        // Consulta para calcular o total de gastos
+                        $sqlGastos = "SELECT SUM(valor) AS total_gastos FROM gastos";
+                        $stmtGastos = $pdo->prepare($sqlGastos);
+                        $stmtGastos->execute();
+                        $totalGastos = $stmtGastos->fetch(PDO::FETCH_ASSOC)['total_gastos'] ?? 0;
+
+                        // Calcula o saldo atual
+                        $saldoAtual = $totalReceitas - $totalGastos;
+                    } catch (PDOException $e) {
+                        echo "<p>Erro ao calcular saldo: " . $e->getMessage() . "</p>";
+                        $saldoAtual = 0;
+                    }
+                    ?>
+
                     <div class="balance-card">
-                        <a href="indexTransacoes.html">
+                        <a href="indexTransacoes.php">
                             <p>Saldo Atual</p>
-                            <h2>R$5,00</h2>
+                            <!-- EXPLICACAO DESSE NGC AI EMBAIXO
+                            $saldoAtual. (2) casas decimais. (',') separador, ('.') separador de milhar -->
+                            <h2>R$ <?php echo number_format($saldoAtual, 2, ',', '.'); ?></h2>
                         </a>
                     </div>
-                    <a href="indexReceitas.html" class="circle-card">
+                    <a href="indexReceitas.php" class="circle-card">
                         <i class="fa-solid fa-arrow-up"></i>
                     </a>
-                    <a href="indexGastos.html" class="circle-card">
+                    <a href="indexGastos.php" class="circle-card">
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 </section>
             </div>
+
 
             <!-- Seção de Transações -->
             <div class="transaction-sec">
@@ -83,36 +109,28 @@
                             </tr>
                         </thead>
                         <tbody class="content">
-                            <tr>
-                                <td>Gasto</td>
-                                <td>R$200,00</td>
-                                <td>01/09</td>
-                                <td>Ingresso para Festa</td>
-                            </tr>
-                            <tr>
-                                <td>Gasto</td>
-                                <td>R$45,00</td>
-                                <td>06/09</td>
-                                <td>Compra de Pizza</td>
-                            </tr>
-                            <tr>
-                                <td>Gasto</td>
-                                <td>R$100,00</td>
-                                <td>10/09</td>
-                                <td>Pagamento para o conserto da pia</td>
-                            </tr>
-                            <tr>
-                                <td>Receita</td>
-                                <td>R$250,00</td>
-                                <td>15/09</td>
-                                <td>Amigo devolveu o dinheiro emprestado</td>
-                            </tr>
-                            <tr>
-                                <td>Receita</td>
-                                <td>R$100,00</td>
-                                <td>15/09</td>
-                                <td>Pai me deu de presente</td>
-                            </tr>
+                            <?php
+                            include 'conexao.php';
+                            try {
+                                // Consulta os dados da tabela transacoes
+                                $sql = "SELECT * FROM transacoes ORDER BY data DESC";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute();
+                                $transacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                // Exibe cada transação
+                                foreach ($transacoes as $transacao) {
+                                    echo "<tr>";
+                                    echo "<td>" . htmlspecialchars($transacao['tipo']) . "</td>";
+                                    echo "<td>R$ " . number_format($transacao['valor'], 2, ',', '.') . "</td>";
+                                    echo "<td>" . date("d/m/Y", strtotime($transacao['data'])) . "</td>";
+                                    echo "<td>" . htmlspecialchars($transacao['descricao']) . "</td>";
+                                    echo "</tr>";
+                                }
+                            } catch (PDOException $e) {
+                                echo "<tr><td colspan='4'>Erro ao buscar transações: " . $e->getMessage() . "</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -125,10 +143,11 @@
 
         </main>
 
-    </div>
+    </div> 
 
     <!-- Script -->
     <script src="scriptGeral.js"></script>
+    <script src="scriptAddTransacao.js"></script>
 
 </body>
 
