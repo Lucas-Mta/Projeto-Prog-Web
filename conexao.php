@@ -8,8 +8,6 @@ function conectar() {
     try {
         $conn = new PDO("mysql:host=$host;dbname=$banco", $usuario, $senha);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Conexão realizada.";
-        
         return $conn;
     } catch (Exception $e) {
         die("Erro de conexão: " . $e->getMessage());
