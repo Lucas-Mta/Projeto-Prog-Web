@@ -1,48 +1,50 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require 'conexao.php';
+include 'conexao.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $type = htmlspecialchars($_POST['type']);
-    $movement = htmlspecialchars($_POST['movement']);
-    $amount = floatval($_POST['amount'] ?? 0);
-    $category = htmlspecialchars($_POST['category']);
-    $date = htmlspecialchars($_POST['date']);
-    $description = htmlspecialchars($_POST['description'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $movimentacoes = $_POST['movement'] ?? '';
+    $valor = $_POST['amount'] ?? 0;
+    $categoria = $_POST['category'] ?? '';
+    $data = $_POST['date'] ?? date('Y-m-d');
+    $descricao = $_POST['description'] ?? '';
+    $tipo = $_POST['type'] ?? 'expense';
 
-    echo "<h2>Dados da Transação Recebida:</h2>";
-    echo "Tipo: $type<br>";
-    echo "Movimentação: $movement<br>";
-    echo "Valor: $amount<br>";
-    echo "Categoria: $category<br>";
-    echo "Data: $date<br>";
-    echo "Descrição: $description<br>";
+    // pegando se e gasto ou receita 
+    $tipo = ($tipo === 'expense') ? 'Gasto' : 'Receita';
+
+    // verificacao de data, pq tava dando erro no comeco
+    if (!preg_match('/\d{4}-\d{2}-\d{2}/', $data)) {
+        $data = date('Y-m-d'); 
+    }
 
     try {
-        $conn = conectar();
+        $id_gasto = null;
+        $id_receita = null;
 
-        
-    } catch (Exception $e) {
-        // fazer um rollback?
-        echo "Erro ao inserir a transação: " . $e->getMessage();
+        //add na tabela de gasto ou receita
+        if ($tipo === 'Gasto') {
+            $sqlGasto = "INSERT INTO gastos (movimentacoes, valor, categoria, data, descricao) VALUES (?, ?, ?, ?, ?)";
+            $stmtGasto = $pdo->prepare($sqlGasto);
+            $stmtGasto->execute([$movimentacoes, $valor, $categoria, $data, $descricao]);
+            $id_gasto = $pdo->lastInsertId(); 
+        } else {
+            $sqlReceita = "INSERT INTO receitas (movimentacoes, valor, categoria, data, descricao) VALUES (?, ?, ?, ?, ?)";
+            $stmtReceita = $pdo->prepare($sqlReceita);
+            $stmtReceita->execute([$movimentacoes, $valor, $categoria, $data, $descricao]);
+            $id_receita = $pdo->lastInsertId(); // Captura o ID da receita inserida
+        }
+
+        // add na tabela de transacao
+        $sqlTransacao = "INSERT INTO transacoes (tipo, valor, data, descricao, id_gasto, id_receita) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmtTransacao = $pdo->prepare($sqlTransacao);
+        $stmtTransacao->execute([$tipo, $valor, $data, $descricao, $id_gasto, $id_receita]);
+
+        echo "sucesso";
+    } catch (PDOException $e) {
+        echo "Erro ao inserir: " . $e->getMessage();
     }
-} else {
-    echo "Requisição inválida.";
 }
-
-?>
-
-<!-- $type = htmlspecialchars($_POST['type']);
-$movement = htmlspecialchars($_POST['movement']);
-$amount = floatval($_POST['amount'] ?? 0);
-$category = htmlspecialchars($_POST['category']);
-$date = htmlspecialchars($_POST['date']);
-$description = htmlspecialchars($_POST['description'] ?? '');
-
-echo "<h2>Dados da Transação Recebida:</h2>";
-echo "Tipo: $type<br>";
-echo "Movimentação: $movement<br>";
-echo "Valor: $amount<br>";
-echo "Categoria: $category<br>";
-echo "Data: $date<br>";
-echo "Descrição: $description<br>"; -->
