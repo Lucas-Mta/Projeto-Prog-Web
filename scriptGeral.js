@@ -25,25 +25,25 @@ function createMenu() {
 
             <nav class="menu poppins-regular">
                 <ul>
-                    <a href="indexDashboard.html">
+                    <a href="indexDashboard.php">
                         <li class="menu-item">
                             <i class="fa-solid fa-house"></i>
                             <p>Dashboard</p>
                         </li>
                     </a>
-                    <a href="indexTransacoes.html">
+                    <a href="indexTransacoes.php">
                         <li class="menu-item">
                             <i class="fa-solid fa-money-bill-transfer"></i>
                             <p>Transações</p>
                         </li>
                     </a>
-                    <a href="indexReceitas.html">
+                    <a href="indexReceitas.php">
                         <li class="menu-item">
                             <i class="fa-solid fa-arrow-up"></i>
                             <p>Receitas</p>
                         </li>
                     </a>
-                    <a href="indexGastos.html">
+                    <a href="indexGastos.php">
                         <li class="menu-item">
                             <i class="fa-solid fa-arrow-down"></i>
                             <p>Gastos</p>
@@ -275,41 +275,29 @@ function closeMenu() {
     menu.style.display = "none";
 }
 
-// Função para adicionar uma nova transação (gasto ou receita)
+// Função para adicionar uma nova transação (gasto ou receita) usando AJAX
 function addTransaction(event) {
     event.preventDefault();
+    const formData = new FormData(event.target);
 
-    var type = document.getElementById("type").value;
-    var movement = document.getElementById("movement").value;
-    var amount = document.getElementById("amount").value;
-    var category = document.getElementById("category").value;
-    var date = document.getElementById("date").value;
-    var description = document.getElementById("description").value;
+    console.log(formData.get('date')); // Adicione esta linha para verificar o valor
 
-    if (movement === "") {
-        alert("Por favor, insira o tipo da movimentação.");
-        return;
-    }
-    if (amount <= 0 || isNaN(amount)) {
-        alert("Por favor, insira um valor válido maior que zero.");
-        return;
-    }
-    if (category.trim() === "") {
-        alert("Por favor, selecione uma categoria.");
-        return;
-    }
-    if (date === "") {
-        alert("Por favor, insira uma data válida.");
-        return;
-    }
-
-    alert("Transação adicionada com sucesso: " + type);
-    
-    event.target.submit();
-
-    limparFormulario();
-    closeModal();
+    fetch('recebeTransacao.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data.includes("sucesso")) {
+            alert("Transação adicionada com sucesso!");
+            closeModal();
+        } else {
+            alert("Erro ao adicionar transação: " + data);
+        }
+    })
+    .catch(error => console.error('Erro:', error));
 }
+
 
 // Função para limpar os campos do formulário
 function limparFormulario() {
@@ -442,5 +430,24 @@ function updateThemeIcon() {
         }
     }
 }
+
+//o nome estava Fulano e só dps de 1 segundo atualizando pro nome da pessoa
+document.addEventListener("DOMContentLoaded", function () {
+    // Obtém o nome do usuário do localStorage
+    const userName = localStorage.getItem("localWelcome-user-name");
+    
+    if (userName) {
+        // Atualiza o nome de boas-vindas
+        document.getElementById("welcome-user-name").innerText = userName;
+
+        // Atualiza o nome embaixo da foto de perfil
+        const profileNameElement = document.getElementById("user-name");
+        if (profileNameElement) {
+            profileNameElement.innerText = userName;
+        }
+    }
+});
+
+
 
 
