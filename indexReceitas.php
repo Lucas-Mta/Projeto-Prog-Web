@@ -26,19 +26,33 @@
 
                 <!-- Seção de Cards de Saldo e Links -->
                 <section class="balance-cards">
+                    <?php
+                    include 'conexao.php';
+                    try {
+                        // Consulta para calcular o total de receitas
+                        $sqlTotalReceitas = "SELECT SUM(valor) AS total_receitas FROM receitas";
+                        $stmtTotalReceitas = $pdo->prepare($sqlTotalReceitas);
+                        $stmtTotalReceitas->execute();
+                        $totalReceitas = $stmtTotalReceitas->fetch(PDO::FETCH_ASSOC)['total_receitas'] ?? 0;
+                    } catch (PDOException $e) {
+                        echo "<p>Erro ao calcular total de receitas: " . $e->getMessage() . "</p>";
+                        $totalReceitas = 0;
+                    }
+                    ?>
+
                     <div class="balance-card">
-                        <a href="indexTransacoes.html">
+                        <a href="indexTransacoes.php">
                             <p>Total Receitas</p>
-                            <h2>R$350,00</h2>
+                            <h2>R$ <?php echo number_format($totalReceitas, 2, ',', '.'); ?></h2>
                         </a>
                     </div>
-                    <a href="indexGastos.html" class="circle-card">
-                        <i class="fa-solid fa-arrow-down"></i>
+                    <a href="indexGastos.php" class="circle-card">
+                        <i class="fa-solid fa-arrow-up"></i>
                     </a>
                 </section>
             </div>
 
-            <!-- Seção de Transações -->
+            <!-- Seção de Receitas -->
             <div class="transaction-sec">
                 <div class="transaction-header">
                     <select name="month" id="month" class="month-select poppins-regular">
@@ -68,7 +82,7 @@
                     </div>
                 </div>
 
-                <!-- Tabela de Transações -->
+                <!-- Tabela de Receitas -->
                 <div class="transaction-table">
                     <table>
                         <thead>
@@ -81,20 +95,29 @@
                             </tr>
                         </thead>
                         <tbody class="content">
-                            <tr>
-                                <td>Devolução empréstimo</td>
-                                <td>R$250,00</td>
-                                <td>Empréstimo</td>
-                                <td>27/09</td>
-                                <td>Amigo devolveu o dinheiro emprestado</td>
-                            </tr>
-                            <tr>
-                                <td>Aniversário</td>
-                                <td>R$100,00</td>
-                                <td>Presente</td>
-                                <td>15/09</td>
-                                <td>Pai me deu de presente</td>
-                            </tr>
+                            <?php
+                            include 'conexao.php';
+                            try {
+                                // Consulta os dados da tabela de receitas
+                                $sql = "SELECT * FROM receitas ORDER BY data DESC";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute();
+                                $receitas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                // Exibe cada receita na tabela
+                                foreach ($receitas as $receita) {
+                                    echo "<tr>";
+                                    echo "<td>" . htmlspecialchars($receita['movimentacoes']) . "</td>";
+                                    echo "<td>R$ " . number_format($receita['valor'], 2, ',', '.') . "</td>";
+                                    echo "<td>" . htmlspecialchars($receita['categoria']) . "</td>";
+                                    echo "<td>" . date("d/m/Y", strtotime($receita['data'])) . "</td>";
+                                    echo "<td>" . htmlspecialchars($receita['descricao']) . "</td>";
+                                    echo "</tr>";
+                                }
+                            } catch (PDOException $e) {
+                                echo "<tr><td colspan='5'>Erro ao buscar receitas: " . $e->getMessage() . "</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
