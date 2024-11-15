@@ -19,25 +19,40 @@
         <main class="dashboard">
             <!-- Contêiner flexível para header e cards -->
             <div class="header-container">
-                <!-- Seção de Cards de Saldo e Links -->
                 <header>
                     <h1 class="merriweather-black">GASTOS</h1>
                     <p class="poppins-regular">Bem vindo(a), <span id="welcome-user-name">Fulano</span>!</p>
                 </header>
+
+                <!-- Seção de Cards de Saldo e Links -->
                 <section class="balance-cards">
+                    <?php
+                    include 'conexao.php';
+                    try {
+                        // SQL do total de gastos
+                        $sqlTotalGastos = "SELECT SUM(valor) AS total_gastos FROM gastos";
+                        $stmtTotalGastos = $pdo->prepare($sqlTotalGastos);
+                        $stmtTotalGastos->execute();
+                        $totalGastos = $stmtTotalGastos->fetch(PDO::FETCH_ASSOC)['total_gastos'] ?? 0;
+                    } catch (PDOException $e) {
+                        echo "<p>Erro ao calcular total de gastos: " . $e->getMessage() . "</p>";
+                        $totalGastos = 0;
+                    }
+                    ?>
+
                     <div class="balance-card">
-                        <a href="indexTransacoes.html">
+                        <a href="indexTransacoes.php">
                             <p>Total Gastos</p>
-                            <h2>R$345,00</h2>
+                            <h2>R$ <?php echo number_format($totalGastos, 2, ',', '.'); ?></h2>
                         </a>
                     </div>
-                    <a href="indexReceitas.html" class="circle-card">
-                        <i class="fa-solid fa-arrow-up"></i>
+                    <a href="indexReceitas.php" class="circle-card">
+                        <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 </section>
             </div>
 
-            <!-- Seção de Transações -->
+            <!-- Seção de Gastos -->
             <div class="transaction-sec">
                 <div class="transaction-header">
                     <select name="month" id="month" class="month-select poppins-regular">
@@ -67,7 +82,7 @@
                     </div>
                 </div>
 
-                <!-- Tabela de Transações -->
+                <!-- Tabela de Gastos -->
                 <div class="transaction-table">
                     <table>
                         <thead>
@@ -80,30 +95,32 @@
                             </tr>
                         </thead>
                         <tbody class="content">
-                            <tr>
-                                <td>Festa Universitária</td>
-                                <td>R$200,00</td>
-                                <td>Lazer</td>
-                                <td>01/09</td>
-                                <td>Ingresso para Festa</td>
-                            </tr>
-                            <tr>
-                                <td>Ifood</td>
-                                <td>R$45,00</td>
-                                <td>Alimentação</td>
-                                <td>06/09</td>
-                                <td>Compra de Pizza</td>
-                            </tr>
-                            <tr>
-                                <td>Conserto da pia</td>
-                                <td>R$100,00</td>
-                                <td>Serviços</td>
-                                <td>10/09</td>
-                                <td>Pagamento para o conserto da pia</td>
-                            </tr>
+                            <?php
+                            try {
+                                // SQL tabela de gastos
+                                $sql = "SELECT * FROM gastos ORDER BY data DESC";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute();
+                                $gastos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                // Exibe os gastos
+                                foreach ($gastos as $gasto) {
+                                    echo "<tr>";
+                                    echo "<td>" . htmlspecialchars($gasto['movimentacoes']) . "</td>";
+                                    echo "<td>R$ " . number_format($gasto['valor'], 2, ',', '.') . "</td>";
+                                    echo "<td>" . htmlspecialchars($gasto['categoria']) . "</td>";
+                                    echo "<td>" . date("d/m/Y", strtotime($gasto['data'])) . "</td>";
+                                    echo "<td>" . htmlspecialchars($gasto['descricao']) . "</td>";
+                                    echo "</tr>";
+                                }
+                            } catch (PDOException $e) {
+                                echo "<tr><td colspan='5'>Erro ao buscar gastos: " . $e->getMessage() . "</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
+                
             </div>
 
             <!-- Footer -->
